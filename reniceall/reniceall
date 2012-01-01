@@ -6,35 +6,41 @@
 
 # want help?
 if [ $# == 1 ]; then
-  if [ $1 == "-h" -o $1 == "--help" ]
-    then echo 'reniceall renices several processes with same name.
+  if [ $1 == "-h" -o $1 == "--help" ]; then
+    echo 'reniceall renices several processes with same name.
 Syntax: reniceall nicevalue name'
-  exit 0
+    exit 0
   fi
 fi
 
 # check no of params
-if [ $# != 2 ]
-  then echo "reniceall needs two params (do reniceall -h for help)"
+if [ $# != 2 ]; then
+  echo "reniceall needs two params (do reniceall -h for help)"
 fi
 
 # check where renice sits
-if [ -x /usr/bin/renice ]
-  then RENICE=/usr/bin/renice
-  elif [ -x /bin/renice ]
-    then RENICE=/bin/renice
-  else echo $0 error: renice not found; exit 1
+if [ -x /usr/bin/renice ]; then
+  RENICE=/usr/bin/renice
+elif [ -x /bin/renice ]; then
+  RENICE=/bin/renice
+else
+  echo $0 error: renice not found;
+  exit 1
 fi
 
 # check where pidof sits (from package SysVinit)
-if [ -x /sbin/pidof ]
-  then PIDOF=/sbin/pidof
-  elif [ -x /usr/sbin/pidof ]
-    then PIDOF=/usr/sbin/pidof
-  else echo $0 error: pidof not found; exit 1
+if [ -x /sbin/pidof ]; then
+  PIDOF=/sbin/pidof
+elif [ -x /bin/pidof ]; then
+  PIDOF=/bin/pidof
+elif [ -x /usr/sbin/pidof ]; then
+  PIDOF=/usr/sbin/pidof
+else
+  echo $0 error: pidof not found;
+  exit 1
 fi
 
 # loop over all fitting processes
 for proc in `$PIDOF $2`; do
-  renice $1 $proc
+  renice -n $1 $proc
 done
