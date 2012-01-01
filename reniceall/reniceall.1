@@ -1,0 +1,29 @@
+.TH "reniceall" "1" "0.1" "Hans-Georg Eßer" "proc tool"
+.SH "NAME"
+.LP 
+reniceall \- Renices several processes
+.SH "SYNTAX"
+.LP 
+reniceall \fIniceval\fP \fIprocname\fP
+.br 
+reniceall \-h|\-\-help
+.SH "DESCRIPTION"
+.LP 
+This program allows you to apply the renice command to several processes in the same way that killall sends (kill) signals to several processes.
+.SH "OPTIONS"
+.LP 
+.TP 
+\fB\-h|\-\-help\fR
+Output help information and exit.
+.SH "FILES"
+.LP 
+\fI/usr/local/bin/reniceall\fP 
+.SH "EXAMPLES"
+.LP 
+To change the nice value of all wav2mp3 processes to 5, type:
+.LP 
+reniceall 5 wav2mp3
+.LP 
+.SH "AUTHORS"
+.LP 
+Hans\-Georg Eßer <h.g.esser@gmx.de>

@@ -1,0 +1,60 @@
+reniceall 0.1  Feb 02 2002
+--------------------------
+
+
+ABOUT RENICEALL
+
+reniceall is a simple shell script that calls pidof to get
+a list of all processes sharing a given program name, then
+calls renice on each of them to change their nice value.
+
+This is basically the same as what killall does in comparison
+to kill.
+
+So what you can do would look like this:
+
+  [esser@dual esser]$ reniceall 5 bash
+  8490: old priority 0, new priority: 5
+  2059: old priority 0, new priority: 5
+  2041: old priority 0, new priority: 5
+  2023: old priority 0, new priority: 5
+
+If you happen to forget the order of the arguments, call it
+with -h or --help:
+
+  [esser@dual esser]$ reniceall -h
+  reniceall renices several processes with same name.
+  Syntax: reniceall nicevalue name
+
+When called as root, you can set negative values, just the
+same way you could do that manually with renice.
+
+
+INSTALLING
+
+To install the tool, simply untar the archive and call the
+install.sh script. Note: The install script will not check
+if you have pidof, but the reniceall script will not work if
+it isn't available.
+
+
+CREDITS
+
+There's a man page that I created with manedit,
+http://wolfpack.twu.net/ManEdit/
+
+
+COPYRIGHT
+
+(c) Copyright 2002 Hans-Georg Eßer <h.g.esser@gmx.de>
+Since it has become standard, this script is GPL'd (see
+license file gpl.txt).
+If reniceall blows away your system (which seems unlikely),
+I claim to be kept free from any responsibility.
+(See section "NO WARRANTY" in gpl.txt)
+
+
+TELL ME
+
+If _anyone_ ever uses this script, would you tell me?
+Have fun :)
